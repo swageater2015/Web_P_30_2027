@@ -1,4 +1,4 @@
-﻿namespace hotel
+﻿namespace Hotel.Model
 {
     public class Hotel_Room : EFModel
     {
