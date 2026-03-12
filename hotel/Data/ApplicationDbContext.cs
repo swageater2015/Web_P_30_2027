@@ -1,4 +1,4 @@
-﻿using Hotel.Model;
+using Hotel.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
