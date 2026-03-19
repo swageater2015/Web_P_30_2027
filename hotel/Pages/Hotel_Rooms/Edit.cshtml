@@ -1,13 +1,15 @@
-﻿@page
-@model Hotel.Pages.Hotel_Room.CreateModel
+﻿@page 
+@model Hotel.Pages.Hotel_Rooms.EditModel
 @{
 }
-<h1>Добавить комнату</h1>
+<h1>Редактировать</h1>
+
 <form method="post">
+    <input type="hidden" asp-for="Hotel_Room.Id" />
+
     <div>
         <label>Номер</label><br />
         <input asp-for="Hotel_Room.RoomNumber" />
-        <span asp-validation-for="Hotel_Room.RoomNumber"></span>
     </div>
 
     <div>
