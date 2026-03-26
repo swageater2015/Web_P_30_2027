@@ -3,36 +3,39 @@ using Hotel.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-
-namespace Hotel.Pages.Hotel_Room
+namespace Hotel.Pages.Clients
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public CreateModel(ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Model.Hotel_Room Hotel_Room { get; set; }
+        public Client Client { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet(int id)
         {
-            Hotel_Room = new Model.Hotel_Room();
-            Console.WriteLine("OnGet вызван!");
+            Client = _context.Clients.Find(id);
+
+            if (Client == null)
+                return NotFound();
+
+            return Page();
         }
+
         public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
                 return Page();
 
-            _context.Hotel_Rooms.Add(Hotel_Room);
+            _context.Clients.Update(Client);
             _context.SaveChanges();
 
             return RedirectToPage("Index");
         }
-
     }
 }

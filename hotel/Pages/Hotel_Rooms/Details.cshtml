@@ -1,0 +1,16 @@
+﻿@page
+@model Hotel.Pages.Hotel_Rooms.DetailsModel
+@{
+}
+<h1>Информация о книге</h1>
+
+<div>
+    <p><strong>Номер:</strong> @Model.Hotel_Room.RoomNumber</p>
+    <p><strong>Этаж:</strong> @Model.Hotel_Room.Floor</p>
+    <p><strong>Корпус:</strong> @Model.Hotel_Room.Building</p>
+    <p><strong>Категория:</strong> @Model.Hotel_Room.Category</p>
+</div>
+
+<p>
+    <a asp-page="Index">Назад к списку</a>
+</p>

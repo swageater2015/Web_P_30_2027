@@ -1,0 +1,15 @@
+﻿@page 
+@model Hotel.Pages.Clients.DetailsModel
+@{
+}
+<h1>Информация о клиенте</h1>
+
+<div>
+    <p><strong>Фамилия и имя:</strong> @Model.Client?.LastName</p>
+    <p><strong>Телефон:</strong> @Model.Client?.Phone</p>
+    <p><strong>Email:</strong> @Model.Client?.Email</p>
+</div>
+
+<p>
+    <a asp-page="Index">Назад к списку</a>
+</p>

@@ -15,15 +15,23 @@ namespace Hotel.Pages.Hotel_Rooms
         }
 
         [BindProperty]
-        public Hotel_Room Hotel_Room { get; set; }
+        public Model.Hotel_Room Hotel_Room { get; set; }
 
-        public IActionResult OnGet(int id)
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            Hotel_Room = _context.Hotel_Room.Find(id);
+            // Диагностика
+            Console.WriteLine($"Получен id: {id}");
 
+            Hotel_Room = await _context.Hotel_Rooms.FindAsync(id);
+
+            // Диагностика
             if (Hotel_Room == null)
+            {
+                Console.WriteLine($"Номер с id {id} не найден в базе данных");
                 return NotFound();
+            }
 
+            Console.WriteLine($"Найден номер: {Hotel_Room.RoomNumber}");
             return Page();
         }
 
@@ -32,7 +40,7 @@ namespace Hotel.Pages.Hotel_Rooms
             if (!ModelState.IsValid)
                 return Page();
 
-            _context.Hotel_Room.Update(Hotel_Room);
+            _context.Hotel_Rooms.Update(Hotel_Room);
             _context.SaveChanges();
 
             return RedirectToPage("Index");

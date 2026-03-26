@@ -1,12 +1,12 @@
 ﻿@page
-@model Hotel.Pages.Clients.CreateModel
+@model Hotel.Pages.Clients.EditModel
 @{
 }
-<h1>Добавить клиента</h1>
-
 <form method="post">
+    <input type="hidden" asp-for="Client.Id" />
+
     <div>
-        <label>Фамилия и имя</label><br />
+        <label>Имя и фамилия</label><br />
         <input asp-for="Client.LastName" />
     </div>
 
@@ -16,9 +16,11 @@
     </div>
 
     <div>
-        <label>Email</label><br />
+        <label>Электронная почта</label><br />
         <input asp-for="Client.Email" />
     </div>
 
     <button type="submit">Сохранить</button>
 </form>
+
+<a asp-page="Index">Назад</a>
