@@ -21,8 +21,8 @@
         @foreach (var client in Model.Clients)
         {
             <tr>
-                <td>@client.FullName</td>
-                <td>@client.NumberPhone</td>
+                <td>@client.LastName</td>
+                <td>@client.Phone</td>
                 <td>@client.Email</td>
                 <td>
                     <a asp-page="Details" asp-route-id="@client.Id">Открыть</a>

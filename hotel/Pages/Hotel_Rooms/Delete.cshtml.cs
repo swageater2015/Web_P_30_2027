@@ -1,7 +1,7 @@
 using hotel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using RoomModel = Hotel.Model.Hotel_Room;
 namespace Hotel.Pages.Hotel_Rooms
 {
     public class DeleteModel : PageModel
@@ -14,7 +14,7 @@ namespace Hotel.Pages.Hotel_Rooms
         }
 
         [BindProperty]
-        public Hotel_Room Hotel_Room { get; set; }
+        public RoomModel? Hotel_Room { get; set; }
 
         public IActionResult OnGet(int id)
         {

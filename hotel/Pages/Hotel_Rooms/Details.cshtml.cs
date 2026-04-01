@@ -1,7 +1,7 @@
 using hotel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using RoomModel = Hotel.Model.Hotel_Room;
 namespace Hotel.Pages.Hotel_Rooms
 {
     public class DetailsModel : PageModel
@@ -13,7 +13,8 @@ namespace Hotel.Pages.Hotel_Rooms
             _context = context;
         }
 
-        public Hotel_Room Hotel_Room { get; set; }
+        [BindProperty]
+        public RoomModel? Hotel_Room { get; set; }
 
         public IActionResult OnGet(int id)
         {
