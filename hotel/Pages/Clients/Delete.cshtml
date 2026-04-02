@@ -1,0 +1,12 @@
+﻿@page
+@model Hotel.Pages.Clients.DeleteModel
+@{
+}
+<h3>Удалить клиента?</h3>
+
+<p>@Model.Client.LastName</p>
+
+<form method="post">
+    <input type="hidden" asp-for="Client.Id" />
+    <button type="submit">Удалить</button>
+</form>

@@ -1,0 +1,33 @@
+﻿@page 
+@model Hotel.Pages.Hotel_Rooms.EditModel
+@{
+}
+<h1>Редактировать</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Hotel_Room.Id" />
+
+    <div>
+        <label>Номер</label><br />
+        <input asp-for="Hotel_Room.RoomNumber" />
+    </div>
+
+    <div>
+        <label>Этаж</label><br />
+        <input asp-for="Hotel_Room.Floor" />
+    </div>
+
+    <div>
+        <label>Корпус</label><br />
+        <input asp-for="Hotel_Room.Building" type="number" />
+    </div>
+
+    <div>
+        <label>Категория</label><br />
+        <input asp-for="Hotel_Room.Category" type="number" />
+    </div>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<a asp-page="Index">Назад</a>
