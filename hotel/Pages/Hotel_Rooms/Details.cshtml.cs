@@ -18,7 +18,7 @@ namespace Hotel.Pages.Hotel_Rooms
 
         public IActionResult OnGet(int id)
         {
-            Hotel_Room = _context.Hotel_Rooms.FirstOrDefault(b => b.Id == id);
+            Hotel_Room = _context.Hotel_Room.FirstOrDefault(b => b.Id == id);
 
             if (Hotel_Room == null)
                 return NotFound();

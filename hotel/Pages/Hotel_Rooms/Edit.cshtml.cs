@@ -22,7 +22,7 @@ namespace Hotel.Pages.Hotel_Rooms
             // Диагностика
             Console.WriteLine($"Получен id: {id}");
 
-            Hotel_Room = await _context.Hotel_Rooms.FindAsync(id);
+            Hotel_Room = await _context.Hotel_Room.FindAsync(id);
 
             // Диагностика
             if (Hotel_Room == null)
@@ -40,7 +40,7 @@ namespace Hotel.Pages.Hotel_Rooms
             if (!ModelState.IsValid)
                 return Page();
 
-            _context.Hotel_Rooms.Update(Hotel_Room);
+            _context.Hotel_Room.Update(Hotel_Room);
             _context.SaveChanges();
 
             return RedirectToPage("Index");

@@ -19,7 +19,7 @@ namespace Hotel.Pages.Hotel_Rooms
 
         public async Task OnGetAsync()
         {
-            Hotel_Rooms = await _context.Hotel_Rooms.ToListAsync();
+            Hotel_Rooms = await _context.Hotel_Room.ToListAsync();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Hotel.Pages.Hotel_Room
             if (!ModelState.IsValid)
                 return Page();
 
-            _context.Hotel_Rooms.Add(Hotel_Room);
+            _context.Hotel_Room.Add(Hotel_Room);
             _context.SaveChanges();
 
             return RedirectToPage("Index");

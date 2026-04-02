@@ -18,7 +18,7 @@ namespace Hotel.Pages.Hotel_Rooms
 
         public IActionResult OnGet(int id)
         {
-            Hotel_Room = _context.Hotel_Rooms.Find(id);
+            Hotel_Room = _context.Hotel_Room.Find(id);
 
             if (Hotel_Room == null)
                 return NotFound();
@@ -28,11 +28,11 @@ namespace Hotel.Pages.Hotel_Rooms
 
         public IActionResult OnPost()
         {
-            var book = _context.Hotel_Rooms.Find(Hotel_Room.Id);
+            var book = _context.Hotel_Room.Find(Hotel_Room.Id);
 
             if (book != null)
             {
-                _context.Hotel_Rooms.Remove(book);
+                _context.Hotel_Room.Remove(book);
                 _context.SaveChanges();
             }
 
