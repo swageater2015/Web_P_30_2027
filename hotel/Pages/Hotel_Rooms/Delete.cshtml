@@ -1,20 +1,23 @@
 ﻿@page
 @model Hotel.Pages.Hotel_Rooms.DeleteModel
-@{
-}
 
-<h1>Удалить номер</h1>
+<h1 class="mb-4 text-danger">Удалить номер</h1>
 
-<h3>Вы уверены?</h3>
+<div class="alert alert-warning">
+    <h3>Вы уверены, что хотите удалить этот номер?</h3>
+</div>
 
-<div>
-    <p><strong>@Model.Hotel_Room.RoomNumber</strong></p>
-    <p>@Model.Hotel_Room.Floor</p>
+<div class="card mb-4 col-md-6">
+    <div class="card-body">
+        <p><strong>Номер:</strong> @Model.Hotel_Room.RoomNumber</p>
+        <p><strong>Этаж:</strong> @Model.Hotel_Room.Floor</p>
+        <p><strong>Корпус:</strong> @Model.Hotel_Room.Building</p>
+        <p><strong>Категория:</strong> @Model.Hotel_Room.Category</p>
+    </div>
 </div>
 
 <form method="post">
     <input type="hidden" asp-for="Hotel_Room.Id" />
-    <button type="submit">Удалить</button>
+    <button type="submit" class="btn btn-danger">Удалить</button>
+    <a asp-page="Index" class="btn btn-secondary">Отмена</a>
 </form>
-
-<a asp-page="Index">Отмена</a>

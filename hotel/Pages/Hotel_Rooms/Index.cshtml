@@ -1,20 +1,20 @@
 ﻿@page
 @model Hotel.Pages.Hotel_Rooms.IndexModel
 
-<h1>Список номеров</h1>
+<h1 class="mb-4">Список номеров</h1>
 
 <p>
-    <a asp-page="Create">Добавить номер</a>
+    <a asp-page="Create" class="btn btn-success mb-3">Добавить номер</a>
 </p>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
         <tr>
             <th>Номер</th>
             <th>Этаж</th>
             <th>Корпус</th>
             <th>Категория</th>
-            <th></th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -26,9 +26,9 @@
                 <td>@item.Building</td>
                 <td>@item.Category</td>
                 <td>
-                    <a asp-page="./Details" asp-route-id="@item.Id">Детали</a> |
-                    <a asp-page="./Edit" asp-route-id="@item.Id">Изменить</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Детали</a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Изменить</a>
+                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
                 </td>
             </tr>
         }
