@@ -1,13 +1,12 @@
 ﻿@page
-@model Hotel.Pages.Hotel_Room.CreateModel
+@model Hotel.Pages.Hotel_Rooms.CreateModel
 
-<h1 class="mb-4">Добавить номер</h1>
+<h1>Добавить номер</h1>
 
 <form method="post" class="col-md-6">
     <div class="mb-3">
         <label asp-for="Hotel_Room.RoomNumber" class="form-label">Номер</label>
         <input asp-for="Hotel_Room.RoomNumber" class="form-control" />
-        <span asp-validation-for="Hotel_Room.RoomNumber" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -22,7 +21,13 @@
 
     <div class="mb-3">
         <label asp-for="Hotel_Room.Category" class="form-label">Категория</label>
-        <input asp-for="Hotel_Room.Category" type="number" class="form-control" />
+        <select asp-for="Hotel_Room.Category" class="form-select">
+            <option value="">Выберите категорию</option>
+            <option value="Эконом">Эконом</option>
+            <option value="Стандарт">Стандарт</option>
+            <option value="Люкс">Люкс</option>
+            <option value="Президентский">Президентский</option>
+        </select>
     </div>
 
     <button type="submit" class="btn btn-primary">Сохранить</button>
