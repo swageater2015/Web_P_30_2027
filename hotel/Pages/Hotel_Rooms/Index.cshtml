@@ -1,39 +1,36 @@
 ﻿@page
 @model Hotel.Pages.Hotel_Rooms.IndexModel
 
-<h1 class="mb-4">Наши номера</h1>
+<h1>Список номеров</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-success mb-3">➕ Добавить номер</a>
+    <a asp-page="Create">Добавить номер</a>
 </p>
 
-<div class="row">
-    @foreach (var item in Model.Hotel_Rooms)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">Номер @item.RoomNumber</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        <strong> Этаж:</strong> @item.Floor<br />
-                        <strong> Корпус:</strong> @item.Building<br />
-                        <strong> Категория:</strong>
-                        <span class="badge bg-info">@item.Category</span>
-                    </p>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <a asp-page="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Подробнее</a>
-                    <a asp-page="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Изменить</a>
-                    <a asp-page="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Удалить</a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-
-@if (!Model.Hotel_Rooms.Any())
-{
-    <div class="alert alert-warning">Номеров пока нет. Добавьте первый!</div>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Этаж</th>
+            <th>Корпус</th>
+            <th>Категория</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Hotel_Rooms)
+        {
+            <tr>
+                <td>@item.RoomNumber</td>
+                <td>@item.Floor</td>
+                <td>@item.Building</td>
+                <td>@item.Category</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@item.Id">Детали</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Изменить</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

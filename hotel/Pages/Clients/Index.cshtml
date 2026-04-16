@@ -1,37 +1,35 @@
 ﻿@page
 @model Hotel.Pages.Clients.IndexModel
-
-<h1 class="mb-4">Наши клиенты</h1>
+@{
+}
+<h1>Список клиентов</h1>
 
 <p>
-    <a asp-page="Create" class="btn btn-success mb-3">➕ Добавить клиента</a>
+    <a asp-page="Create">Добавить клиента</a>
 </p>
 
-<div class="row">
-    @foreach (var client in Model.Clients)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
-                <div class="card-header bg-success text-white">
-                    <h5 class="card-title mb-0">@client.LastName</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        <strong> Телефон:</strong> @client.Phone<br />
-                        <strong> Email:</strong> @client.Email
-                    </p>
-                </div>
-                <div class="card-footer bg-transparent">
-                    <a asp-page="Details" asp-route-id="@client.Id" class="btn btn-info btn-sm">Подробнее</a>
-                    <a asp-page="Edit" asp-route-id="@client.Id" class="btn btn-warning btn-sm">Изменить</a>
-                    <a asp-page="Delete" asp-route-id="@client.Id" class="btn btn-danger btn-sm">Удалить</a>
-                </div>
-            </div>
-        </div>
-    }
-</div>
-
-@if (!Model.Clients.Any())
-{
-    <div class="alert alert-warning">Клиентов пока нет. Добавьте первого!</div>
-}
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Фамилия и имя</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model.Clients)
+        {
+            <tr>
+                <td>@client.LastName</td>
+                <td>@client.Phone</td>
+                <td>@client.Email</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@client.Id">Открыть</a>
+                    <a asp-page="Edit" asp-route-id="@client.Id">Изменить</a>
+                    <a asp-page="Delete" asp-route-id="@client.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
