@@ -1,16 +1,30 @@
 ﻿@page
 @model Hotel.Pages.Hotel_Rooms.DetailsModel
-@{
-}
-<h1>Информация о книге</h1>
 
-<div>
-    <p><strong>Номер:</strong> @Model.Hotel_Room.RoomNumber</p>
-    <p><strong>Этаж:</strong> @Model.Hotel_Room.Floor</p>
-    <p><strong>Корпус:</strong> @Model.Hotel_Room.Building</p>
-    <p><strong>Категория:</strong> @Model.Hotel_Room.Category</p>
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Номер @Model.Hotel_Room.RoomNumber</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong> Этаж:</strong> @Model.Hotel_Room.Floor</p>
+                    <p><strong> Корпус:</strong> @Model.Hotel_Room.Building</p>
+                    <p>
+                        <strong>⭐ Категория:</strong>
+                        <span class="badge bg-info">@Model.Hotel_Room.Category</span>
+                    </p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <i class="bi bi-door-open" style="font-size: 5rem;"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a asp-page="Index" class="btn btn-secondary">← Назад</a>
+            <a asp-page="Edit" asp-route-id="@Model.Hotel_Room.Id" class="btn btn-warning"> Редактировать</a>
+            <a asp-page="Delete" asp-route-id="@Model.Hotel_Room.Id" class="btn btn-danger"> Удалить</a>
+        </div>
+    </div>
 </div>
-
-<p>
-    <a asp-page="Index">Назад к списку</a>
-</p>

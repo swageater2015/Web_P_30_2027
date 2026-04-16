@@ -1,24 +1,25 @@
 ﻿@page
 @model Hotel.Pages.Clients.CreateModel
-@{
-}
-<h1>Добавить клиента</h1>
 
-<form method="post">
-    <div>
-        <label>Фамилия и имя</label><br />
-        <input asp-for="Client.LastName" />
+<h1 class="mb-4">Добавить клиента</h1>
+
+<form method="post" class="col-md-6">
+    <div class="mb-3">
+        <label asp-for="Client.LastName" class="form-label">Фамилия и имя</label>
+        <input asp-for="Client.LastName" class="form-control" />
+        <span asp-validation-for="Client.LastName" class="text-danger"></span>
     </div>
 
-    <div>
-        <label>Номер телефона</label><br />
-        <input asp-for="Client.Phone" />
+    <div class="mb-3">
+        <label asp-for="Client.Phone" class="form-label">Номер телефона</label>
+        <input asp-for="Client.Phone" class="form-control" />
     </div>
 
-    <div>
-        <label>Email</label><br />
-        <input asp-for="Client.Email" />
+    <div class="mb-3">
+        <label asp-for="Client.Email" class="form-label">Email</label>
+        <input asp-for="Client.Email" class="form-control" />
     </div>
 
-    <button type="submit">Сохранить</button>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-page="Index" class="btn btn-secondary">Назад</a>
 </form>

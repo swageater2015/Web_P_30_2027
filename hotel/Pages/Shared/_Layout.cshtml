@@ -26,11 +26,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Hotel_Rooms/Index">Rooms</a>
+                            <a class="nav-link text-dark" asp-page="/Hotel_Rooms/Index">Номера</a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Clients/Index">Clients</a>
+                            <a class="nav-link text-dark" asp-page="/Clients/Index">Клиенты</a>
                         </li>
                     </ul>
+                    <div class="d-flex">
+                        <button id="themeButton" onclick="toggleTheme()" class="btn btn-outline-secondary">
+                             Тёмная тема
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -50,6 +56,28 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            document.getElementById('themeButton').innerHTML = ' Светлая тема';
+        } else {
+            document.getElementById('themeButton').innerHTML = ' Тёмная тема';
+        }
+        window.toggleTheme = function() {
+            const body = document.body;
+            const button = document.getElementById('themeButton');
+
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                localStorage.setItem('theme', 'light');
+                button.innerHTML = ' Тёмная тема';
+            } else {
+                body.classList.add('dark-theme');
+                localStorage.setItem('theme', 'dark');
+                button.innerHTML = ' Светлая тема';
+            }
+        };
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

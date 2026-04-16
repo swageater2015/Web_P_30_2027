@@ -5,6 +5,6 @@
         public string? RoomNumber { get; set; }
         public string? Floor { get; set; }
         public int Building { get; set; }
-        public int Category { get; set; }
+        public string? Category { get; set; }
     }
 }
