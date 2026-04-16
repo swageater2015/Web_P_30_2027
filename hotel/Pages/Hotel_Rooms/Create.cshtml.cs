@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RoomModel = Hotel.Model.Hotel_Room;
 
-namespace Hotel.Pages.Hotel_Rooms
+namespace Hotel.Pages.Hotel_Room
 {
     public class CreateModel : PageModel
     {

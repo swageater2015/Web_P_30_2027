@@ -1,26 +1,26 @@
 ﻿@page
 @model Hotel.Pages.Clients.EditModel
-
-<h1 class="mb-4">Редактировать клиента</h1>
-
-<form method="post" class="col-md-6">
+@{
+}
+<form method="post">
     <input type="hidden" asp-for="Client.Id" />
 
-    <div class="mb-3">
-        <label asp-for="Client.LastName" class="form-label">Фамилия и имя</label>
-        <input asp-for="Client.LastName" class="form-control" />
+    <div>
+        <label>Имя и фамилия</label><br />
+        <input asp-for="Client.LastName" />
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Client.Phone" class="form-label">Номер телефона</label>
-        <input asp-for="Client.Phone" class="form-control" />
+    <div>
+        <label>Номер телефона</label><br />
+        <input asp-for="Client.Phone" />
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Client.Email" class="form-label">Email</label>
-        <input asp-for="Client.Email" class="form-control" />
+    <div>
+        <label>Электронная почта</label><br />
+        <input asp-for="Client.Email" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <a asp-page="Index" class="btn btn-secondary">Назад</a>
+    <button type="submit">Сохранить</button>
 </form>
+
+<a asp-page="Index">Назад</a>

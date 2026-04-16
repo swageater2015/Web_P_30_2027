@@ -1,35 +1,31 @@
 ﻿@page
-@model Hotel.Pages.Hotel_Rooms.CreateModel
-
-<h1>Добавить номер</h1>
-
-<form method="post" class="col-md-6">
-    <div class="mb-3">
-        <label asp-for="Hotel_Room.RoomNumber" class="form-label">Номер</label>
-        <input asp-for="Hotel_Room.RoomNumber" class="form-control" />
+@model Hotel.Pages.Hotel_Room.CreateModel
+@{
+}
+<h1>Добавить комнату</h1>
+<form method="post">
+    <div>
+        <label>Номер</label><br />
+        <input asp-for="Hotel_Room.RoomNumber" />
+        <span asp-validation-for="Hotel_Room.RoomNumber"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Hotel_Room.Floor" class="form-label">Этаж</label>
-        <input asp-for="Hotel_Room.Floor" class="form-control" />
+    <div>
+        <label>Этаж</label><br />
+        <input asp-for="Hotel_Room.Floor" />
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Hotel_Room.Building" class="form-label">Корпус</label>
-        <input asp-for="Hotel_Room.Building" type="number" class="form-control" />
+    <div>
+        <label>Корпус</label><br />
+        <input asp-for="Hotel_Room.Building" type="number" />
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Hotel_Room.Category" class="form-label">Категория</label>
-        <select asp-for="Hotel_Room.Category" class="form-select">
-            <option value="">Выберите категорию</option>
-            <option value="Эконом">Эконом</option>
-            <option value="Стандарт">Стандарт</option>
-            <option value="Люкс">Люкс</option>
-            <option value="Президентский">Президентский</option>
-        </select>
+    <div>
+        <label>Категория</label><br />
+        <input asp-for="Hotel_Room.Category" type="number" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Сохранить</button>
-    <a asp-page="Index" class="btn btn-secondary">Назад</a>
+    <button type="submit">Сохранить</button>
 </form>
+
+<a asp-page="Index">Назад</a>
