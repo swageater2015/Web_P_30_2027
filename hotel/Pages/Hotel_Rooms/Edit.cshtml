@@ -1,9 +1,11 @@
 ﻿@page
 @model Hotel.Pages.Hotel_Rooms.EditModel
 
-<h1>Добавить номер</h1>
+<h1 class="mb-4">Редактировать номер</h1>
 
 <form method="post" class="col-md-6">
+    <input type="hidden" asp-for="Hotel_Room.Id" />
+
     <div class="mb-3">
         <label asp-for="Hotel_Room.RoomNumber" class="form-label">Номер</label>
         <input asp-for="Hotel_Room.RoomNumber" class="form-control" />
@@ -27,6 +29,24 @@
             <option value="Стандарт">Стандарт</option>
             <option value="Люкс">Люкс</option>
             <option value="Президентский">Президентский</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Hotel_Room.ClientId" class="form-label">Заселённый клиент</label>
+        <select asp-for="Hotel_Room.ClientId" class="form-select">
+            <option value="">(Свободен)</option>
+            @foreach (var client in Model.ClientsList)
+            {
+                if (client.Id == Model.Hotel_Room.ClientId)
+                {
+                    <option value="@client.Id" selected>@client.LastName</option>
+                }
+                else
+                {
+                    <option value="@client.Id">@client.LastName</option>
+                }
+            }
         </select>
     </div>
 

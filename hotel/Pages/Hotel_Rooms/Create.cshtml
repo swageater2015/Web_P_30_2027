@@ -30,6 +30,17 @@
         </select>
     </div>
 
+    <div class="mb-3">
+        <label asp-for="Hotel_Room.ClientId" class="form-label">Заселённый клиент</label>
+        <select asp-for="Hotel_Room.ClientId" class="form-select">
+            <option value="">(Свободен)</option>
+            @foreach (var client in Model.ClientsList)
+            {
+                <option value="@client.Id">@client.LastName</option>
+            }
+        </select>
+    </div>
+
     <button type="submit" class="btn btn-primary">Сохранить</button>
     <a asp-page="Index" class="btn btn-secondary">Назад</a>
 </form>

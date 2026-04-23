@@ -2,6 +2,7 @@ using hotel;
 using Hotel.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RoomModel = Hotel.Model.Hotel_Room;
 namespace Hotel.Pages.Hotel_Rooms
 {
@@ -16,34 +17,52 @@ namespace Hotel.Pages.Hotel_Rooms
 
         [BindProperty]
         public RoomModel? Hotel_Room { get; set; }
+        public List<Client> ClientsList { get; set; } = new();
+
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Диагностика
-            Console.WriteLine($"Получен id: {id}");
+            Hotel_Room = await _context.Hotel_Room
+                .Include(r => r.Client)
+                .FirstOrDefaultAsync(r => r.Id == id);
 
-            Hotel_Room = await _context.Hotel_Room.FindAsync(id);
-
-            // Диагностика
             if (Hotel_Room == null)
             {
-                Console.WriteLine($"Номер с id {id} не найден в базе данных");
                 return NotFound();
             }
 
-            Console.WriteLine($"Найден номер: {Hotel_Room.RoomNumber}");
+            ClientsList = await _context.Clients.ToListAsync();
+
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+            {
+                ClientsList = await _context.Clients.ToListAsync();
                 return Page();
+            }
 
-            _context.Hotel_Room.Update(Hotel_Room);
-            _context.SaveChanges();
+            _context.Attach(Hotel_Room).State = EntityState.Modified;
 
-            return RedirectToPage("Index");
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Hotel_Room.Any(e => e.Id == Hotel_Room.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }
