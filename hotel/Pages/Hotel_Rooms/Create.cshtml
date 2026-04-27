@@ -1,22 +1,25 @@
-﻿﻿@page
+﻿@page
 @model Hotel.Pages.Hotel_Rooms.CreateModel
 
-<h1>Добавить номер</h1>
+<h1 class="mb-4">Добавить номер</h1>
 
 <form method="post" class="col-md-6">
     <div class="mb-3">
-        <label asp-for="Hotel_Room.RoomNumber" class="form-label">Номер</label>
+        <label asp-for="Hotel_Room.RoomNumber" class="form-label">Номер комнаты</label>
         <input asp-for="Hotel_Room.RoomNumber" class="form-control" />
+        <span asp-validation-for="Hotel_Room.RoomNumber" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Hotel_Room.Floor" class="form-label">Этаж</label>
         <input asp-for="Hotel_Room.Floor" class="form-control" />
+        <span asp-validation-for="Hotel_Room.Floor" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Hotel_Room.Building" class="form-label">Корпус</label>
         <input asp-for="Hotel_Room.Building" type="number" class="form-control" />
+        <span asp-validation-for="Hotel_Room.Building" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
@@ -28,10 +31,11 @@
             <option value="Люкс">Люкс</option>
             <option value="Президентский">Президентский</option>
         </select>
+        <span asp-validation-for="Hotel_Room.Category" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Hotel_Room.ClientId" class="form-label">Заселённый клиент</label>
+        <label asp-for="Hotel_Room.ClientId" class="form-label">Клиент</label>
         <select asp-for="Hotel_Room.ClientId" class="form-select">
             <option value="">(Свободен)</option>
             @foreach (var client in Model.ClientsList)

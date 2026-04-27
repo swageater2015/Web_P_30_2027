@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RoomModel = Hotel.Model.Hotel_Room;
+
 namespace Hotel.Pages.Hotel_Rooms
 {
     public class EditModel : PageModel
@@ -17,8 +18,8 @@ namespace Hotel.Pages.Hotel_Rooms
 
         [BindProperty]
         public RoomModel? Hotel_Room { get; set; }
-        public List<Client> ClientsList { get; set; } = new();
 
+        public List<Client> ClientsList { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -32,7 +33,6 @@ namespace Hotel.Pages.Hotel_Rooms
             }
 
             ClientsList = await _context.Clients.ToListAsync();
-
             return Page();
         }
 
@@ -44,23 +44,22 @@ namespace Hotel.Pages.Hotel_Rooms
                 return Page();
             }
 
-            _context.Attach(Hotel_Room).State = EntityState.Modified;
 
-            try
+            var existingRoom = await _context.Hotel_Room.FindAsync(Hotel_Room.Id);
+
+            if (existingRoom == null)
             {
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Hotel_Room.Any(e => e.Id == Hotel_Room.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+
+
+            existingRoom.RoomNumber = Hotel_Room.RoomNumber;
+            existingRoom.Floor = Hotel_Room.Floor;
+            existingRoom.Building = Hotel_Room.Building;
+            existingRoom.Category = Hotel_Room.Category;
+            existingRoom.ClientId = Hotel_Room.ClientId;
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
