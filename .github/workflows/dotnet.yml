@@ -2,26 +2,37 @@ name: .NET
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ dev ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ dev ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      
 
-    - name: Restore dependencies
-      run: dotnet restore
-
-    - name: Build
-      run: dotnet build --no-restore
-
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - name: Debug structure
+        run: |
+          echo "=== Current directory ==="
+          pwd
+          echo "=== List all files ==="
+          ls -la
+          echo "=== Find .sln or .csproj ==="
+          find . -name "*.sln" -o -name "*.csproj"
+      
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+      
+      - name: Run tests
+        run: dotnet test --no-build --configuration Release --verbosity normal
