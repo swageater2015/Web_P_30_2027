@@ -16,9 +16,15 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
+
+    - name: List files (debug)
+      run: ls -R
+
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./hotel.sln  
+
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./hotel.sln --no-restore
+
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./hotel.sln --no-build --verbosity normal
