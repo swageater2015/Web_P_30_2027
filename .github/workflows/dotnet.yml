@@ -17,14 +17,11 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: List files (debug)
-      run: ls -R
-
     - name: Restore dependencies
-      run: dotnet restore ./hotel.sln  
+      run: dotnet restore
 
     - name: Build
-      run: dotnet build ./hotel.sln --no-restore
+      run: dotnet build --no-restore
 
     - name: Test
-      run: dotnet test ./hotel.sln --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
