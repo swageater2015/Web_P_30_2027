@@ -24,13 +24,13 @@ namespace Hotel.Pages.Hotel_Rooms
             ClientsList = _context.Clients.ToList();
 
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
                 return Page();
 
             _context.Hotel_Room.Add(Hotel_Room);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");
         }
