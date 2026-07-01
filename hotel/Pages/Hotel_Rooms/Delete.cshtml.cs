@@ -26,7 +26,7 @@ namespace Hotel.Pages.Hotel_Rooms
             return Page();
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostAsync()
         {
             var book = _context.Hotel_Room.Find(Hotel_Room.Id);
 

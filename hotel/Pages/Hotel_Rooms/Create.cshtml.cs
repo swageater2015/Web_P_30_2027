@@ -17,19 +17,20 @@ namespace Hotel.Pages.Hotel_Rooms
 
         [BindProperty]
         public RoomModel? Hotel_Room { get; set; }
-
+        public List<Client> ClientsList { get; set; } = new();
         public void OnGet()
         {
             Hotel_Room = new Model.Hotel_Room();
-            Console.WriteLine("OnGet вызван!");
+            ClientsList = _context.Clients.ToList();
+
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
                 return Page();
 
             _context.Hotel_Room.Add(Hotel_Room);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("Index");
         }

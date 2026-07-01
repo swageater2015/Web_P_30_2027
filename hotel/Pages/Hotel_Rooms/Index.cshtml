@@ -20,7 +20,16 @@
                         <strong> Этаж:</strong> @item.Floor<br />
                         <strong> Корпус:</strong> @item.Building<br />
                         <strong> Категория:</strong>
-                        <span class="badge bg-info">@item.Category</span>
+                        <span class="badge bg-info">@item.Category</span><br />
+                        <strong> Клиент:</strong>
+                        @if (item.ClientId.HasValue && item.Client != null)
+                        {
+                            <span>@item.Client.LastName</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">(Свободен)</span>
+                        }
                     </p>
                 </div>
                 <div class="card-footer bg-transparent">

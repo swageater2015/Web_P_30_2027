@@ -2,7 +2,9 @@ using hotel;
 using Hotel.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using RoomModel = Hotel.Model.Hotel_Room;
+
 namespace Hotel.Pages.Hotel_Rooms
 {
     public class EditModel : PageModel
@@ -17,33 +19,49 @@ namespace Hotel.Pages.Hotel_Rooms
         [BindProperty]
         public RoomModel? Hotel_Room { get; set; }
 
+        public List<Client> ClientsList { get; set; } = new();
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Диагностика
-            Console.WriteLine($"Получен id: {id}");
+            Hotel_Room = await _context.Hotel_Room
+                .Include(r => r.Client)
+                .FirstOrDefaultAsync(r => r.Id == id);
 
-            Hotel_Room = await _context.Hotel_Room.FindAsync(id);
-
-            // Диагностика
             if (Hotel_Room == null)
             {
-                Console.WriteLine($"Номер с id {id} не найден в базе данных");
                 return NotFound();
             }
 
-            Console.WriteLine($"Найден номер: {Hotel_Room.RoomNumber}");
+            ClientsList = await _context.Clients.ToListAsync();
             return Page();
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+            {
+                ClientsList = await _context.Clients.ToListAsync();
                 return Page();
+            }
 
-            _context.Hotel_Room.Update(Hotel_Room);
-            _context.SaveChanges();
 
-            return RedirectToPage("Index");
+            var existingRoom = await _context.Hotel_Room.FindAsync(Hotel_Room.Id);
+
+            if (existingRoom == null)
+            {
+                return NotFound();
+            }
+
+
+            existingRoom.RoomNumber = Hotel_Room.RoomNumber;
+            existingRoom.Floor = Hotel_Room.Floor;
+            existingRoom.Building = Hotel_Room.Building;
+            existingRoom.Category = Hotel_Room.Category;
+            existingRoom.ClientId = Hotel_Room.ClientId;
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
         }
     }
 }

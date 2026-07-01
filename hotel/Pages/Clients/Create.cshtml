@@ -11,14 +11,23 @@
     </div>
 
     <div class="mb-3">
-        <label asp-for="Client.Phone" class="form-label">Номер телефона</label>
-        <input asp-for="Client.Phone" class="form-control" />
+        <label asp-for="Client.Email" class="form-label">Email</label>
+        <input asp-for="Client.Email" class="form-control" type="email" />
+        <span asp-validation-for="Client.Email" class="text-danger"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Client.Email" class="form-label">Email</label>
-        <input asp-for="Client.Email" class="form-control" />
+        <label asp-for="Client.Phone" class="form-label">Телефон</label>
+        <input asp-for="Client.Phone" class="form-control" />
+        <span asp-validation-for="Client.Phone" class="text-danger"></span>
     </div>
+
+    <div class="mb-3">
+        <label asp-for="Client.BirthDate" class="form-label">Дата рождения</label>
+        <input asp-for="Client.BirthDate" class="form-control" type="date" />
+        <span asp-validation-for="Client.BirthDate" class="text-danger"></span>
+    </div>
+
 
     <button type="submit" class="btn btn-primary">Сохранить</button>
     <a asp-page="Index" class="btn btn-secondary">Назад</a>
